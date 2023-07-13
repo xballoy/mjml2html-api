@@ -1,13 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "group:recommended", "schedule:weekly"],
-  "commitMessagePrefix": "build(deps):",
+  "extends": [
+    "config:base",
+    "group:recommended",
+    "schedule:weekly",
+    ":semanticCommitTypeAll(ci)",
+    "docker:enableMajor",
+    "docker:pinDigests",
+    ":enableVulnerabilityAlertsWithLabel(security)"
+  ],
   "labels": ["dependencies"],
-  "automerge": true,
   "lockFileMaintenance": {
     "enabled": true
   },
+  "regexManagers": [
+    {
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": ["ARG NODE_VERSION=(?<currentValue>.*)\\n"],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node",
+      "versioningTemplate": "node"
+    }
+  ],
   "packageRules": [
+    {
+      "matchPackageNames": ["node"],
+      "matchManagers": ["dockerfile"],
+      "enabled": false
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
     {
       "matchPackageNames": ["mjml", "@types/mjml"],
       "groupName": "mjml packages",
