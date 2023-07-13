@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    "noFallthroughCasesInSwitch": true,
+
+    "outDir": "./dist",
+    "baseUrl": "./"
+  }
+}
