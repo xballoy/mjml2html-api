@@ -6,16 +6,14 @@
 
 ## Requirements
 
-- Node.js ([see .nvmrc file for the supported version](./.nvmrc))
+- [Docker](https://www.docker.com/)
 
 ## Getting started
 
 Start the project:
 
 ```shell
-npm ci
-npm build
-npm run start:prod
+docker compose up -d
 ```
 
 Convert a template:
