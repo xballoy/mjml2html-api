@@ -1,4 +1,4 @@
-ARG NODE_VERSION=18.16.1
+ARG NODE_VERSION=18.18.2
 
 ################################################################################
 # Use node image for base image for all stages.
